@@ -15,8 +15,8 @@ local sampev = require 'lib.samp.events'
 
 update_state = false
 
-local script_vers = 1
-local script_vers_text = "1.00"
+local script_vers = 2
+local script_vers_text = "0.2"
 
 local update_url = "https://raw.githubusercontent.com/nixonoff/script/master/update.ini"
 local update_path = getWorkingDirectory() .. "/update.ini"
