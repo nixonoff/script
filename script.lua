@@ -35,18 +35,18 @@ local script_url = "https://raw.githubusercontent.com/nixonoff/script/master/scr
 local script_path = thisScript().path
 
 local badwords = {
-	[1] = "ахуеная", [2] = "ахуенная", [3] = "ахуенное", [4] = "ахуенно", [5] = "ахуенную", [6] = "ахуенные", [7] = "ахуеное", 
-	[8] = "ахуено", [9] = "ахуеную", [10] = "ахуеные", [11] = "ахуеть", [12] = "блядина", [13] = "блядь", [14] = "блять", 
-	[15] = "бля", [16] = "ебала", [17] = "заебался", [18] = "ебанат", [19] = "ебанашка", [20] = "ебаная", [21] = "ебанулась", 
-	[22] = "ебанутая", [23] = "ебанутся", [24] = "ебануться", [25] = "ебаный", [26] = "ебать", [27] = "еблан", [28] = "еблет", 
-	[29] = "еблоид", [30] = "ебнуться", [31] = "заебал", [32] = "наебал", [33] = "заебись", [34] = "заебок", [35] = "проебал", 
-	[36] = "наебано", [37] = "наебка", [38] = "нахуй", [39] = "нихуя", [40] = "отпиздил", [41] = "охуела", [42] = "охуел", 
-	[43] = "охуеная", [44] = "охуена", [45] = "охуенная", [46] = "охуенна", [47] = "охуенное", [48] = "охуенно", [49] = "охуенную", 
-	[50] = "охуеную", [51] = "охуеные", [52] = "пидораз", [53] = "пидорас", [54] = "пидор", [55] = "спизданул", [56] = "пизда", 
-	[57] = "пиздец", [58] = "пиздошь", [59] = "пиздуй", [60] = "пизду", [61] = "пизды", [62] = "похуй", [63] = "съебал", 
-	[64] = "проебано", [65] = "пизданул", [66] = "спиздили", [67] = "спиздила", [68] = "спиздил", [69] = "сьебал", [70] = "ебал", 
-	[71] = "уебан", [72] = "уебок", [73] = "уебище", [74] = "хуево", [75] = "хуесос", [76] = "хуета", [77] = "хуила", 
-	[78] = "хуи", [79] = "хуйня", [80] = "хуйланза", [81] = "хуйло", [82] = "хуй", [83] = "хую", [84] = "хуя", [85] = "хуёво"
+	[1] = "Г ГµГіГҐГ­Г Гї", [2] = "Г ГµГіГҐГ­Г­Г Гї", [3] = "Г ГµГіГҐГ­Г­Г®ГҐ", [4] = "Г ГµГіГҐГ­Г­Г®", [5] = "Г ГµГіГҐГ­Г­ГіГѕ", [6] = "Г ГµГіГҐГ­Г­Г»ГҐ", [7] = "Г ГµГіГҐГ­Г®ГҐ", 
+	[8] = "Г ГµГіГҐГ­Г®", [9] = "Г ГµГіГҐГ­ГіГѕ", [10] = "Г ГµГіГҐГ­Г»ГҐ", [11] = "Г ГµГіГҐГІГј", [12] = "ГЎГ«ГїГ¤ГЁГ­Г ", [13] = "ГЎГ«ГїГ¤Гј", [14] = "ГЎГ«ГїГІГј", 
+	[15] = "ГЎГ«Гї", [16] = "ГҐГЎГ Г«Г ", [17] = "Г§Г ГҐГЎГ Г«Г±Гї", [18] = "ГҐГЎГ Г­Г ГІ", [19] = "ГҐГЎГ Г­Г ГёГЄГ ", [20] = "ГҐГЎГ Г­Г Гї", [21] = "ГҐГЎГ Г­ГіГ«Г Г±Гј", 
+	[22] = "ГҐГЎГ Г­ГіГІГ Гї", [23] = "ГҐГЎГ Г­ГіГІГ±Гї", [24] = "ГҐГЎГ Г­ГіГІГјГ±Гї", [25] = "ГҐГЎГ Г­Г»Г©", [26] = "ГҐГЎГ ГІГј", [27] = "ГҐГЎГ«Г Г­", [28] = "ГҐГЎГ«ГҐГІ", 
+	[29] = "ГҐГЎГ«Г®ГЁГ¤", [30] = "ГҐГЎГ­ГіГІГјГ±Гї", [31] = "Г§Г ГҐГЎГ Г«", [32] = "Г­Г ГҐГЎГ Г«", [33] = "Г§Г ГҐГЎГЁГ±Гј", [34] = "Г§Г ГҐГЎГ®ГЄ", [35] = "ГЇГ°Г®ГҐГЎГ Г«", 
+	[36] = "Г­Г ГҐГЎГ Г­Г®", [37] = "Г­Г ГҐГЎГЄГ ", [38] = "Г­Г ГµГіГ©", [39] = "Г­ГЁГµГіГї", [40] = "Г®ГІГЇГЁГ§Г¤ГЁГ«", [41] = "Г®ГµГіГҐГ«Г ", [42] = "Г®ГµГіГҐГ«", 
+	[43] = "Г®ГµГіГҐГ­Г Гї", [44] = "Г®ГµГіГҐГ­Г ", [45] = "Г®ГµГіГҐГ­Г­Г Гї", [46] = "Г®ГµГіГҐГ­Г­Г ", [47] = "Г®ГµГіГҐГ­Г­Г®ГҐ", [48] = "Г®ГµГіГҐГ­Г­Г®", [49] = "Г®ГµГіГҐГ­Г­ГіГѕ", 
+	[50] = "Г®ГµГіГҐГ­ГіГѕ", [51] = "Г®ГµГіГҐГ­Г»ГҐ", [52] = "ГЇГЁГ¤Г®Г°Г Г§", [53] = "ГЇГЁГ¤Г®Г°Г Г±", [54] = "ГЇГЁГ¤Г®Г°", [55] = "Г±ГЇГЁГ§Г¤Г Г­ГіГ«", [56] = "ГЇГЁГ§Г¤Г ", 
+	[57] = "ГЇГЁГ§Г¤ГҐГ¶", [58] = "ГЇГЁГ§Г¤Г®ГёГј", [59] = "ГЇГЁГ§Г¤ГіГ©", [60] = "ГЇГЁГ§Г¤Гі", [61] = "ГЇГЁГ§Г¤Г»", [62] = "ГЇГ®ГµГіГ©", [63] = "Г±ГєГҐГЎГ Г«", 
+	[64] = "ГЇГ°Г®ГҐГЎГ Г­Г®", [65] = "ГЇГЁГ§Г¤Г Г­ГіГ«", [66] = "Г±ГЇГЁГ§Г¤ГЁГ«ГЁ", [67] = "Г±ГЇГЁГ§Г¤ГЁГ«Г ", [68] = "Г±ГЇГЁГ§Г¤ГЁГ«", [69] = "Г±ГјГҐГЎГ Г«", [70] = "ГҐГЎГ Г«", 
+	[71] = "ГіГҐГЎГ Г­", [72] = "ГіГҐГЎГ®ГЄ", [73] = "ГіГҐГЎГЁГ№ГҐ", [74] = "ГµГіГҐГўГ®", [75] = "ГµГіГҐГ±Г®Г±", [76] = "ГµГіГҐГІГ ", [77] = "ГµГіГЁГ«Г ", 
+	[78] = "ГµГіГЁ", [79] = "ГµГіГ©Г­Гї", [80] = "ГµГіГ©Г«Г Г­Г§Г ", [81] = "ГµГіГ©Г«Г®", [82] = "ГµГіГ©", [83] = "ГµГіГѕ", [84] = "ГµГіГї", [85] = "ГµГіВёГўГ®"
 }
 
 function apply_custom_style()
@@ -120,7 +120,7 @@ function main()
 			if status == dlstatus.STATUS_ENDDOWNLOADDATA then
 				updateini = inicfg.load(nil, update_path)
 				if tonumber(updateini.info.vers) > script_vers then 
-					sampAddChatMessage("[AutoCensure] {F5F5DC} Найдено обновление. Версия:{A020F0} "..updateini.info.vers_text, 0xff4500)
+					sampAddChatMessage("[AutoCensure] {F5F5DC} ГЌГ Г©Г¤ГҐГ­Г® Г®ГЎГ­Г®ГўГ«ГҐГ­ГЁГҐ. Г‚ГҐГ°Г±ГЁГї:{A020F0} "..updateini.info.vers_text, 0xff4500)
 					update_state = true
 				end
 				if tonumber(updateini.info.vers) <= script_vers and not update_state then
@@ -135,7 +135,7 @@ function main()
 		if update_state then
 			downloadUrlToFile(script_url, script_path, function (id, status)
 				if status == dlstatus.STATUS_ENDDOWNLOADDATA then
-					sampAddChatMessage("[AutoCensure] {F5F5DC} Обновление успешно установлено.", 0xff4500)
+					sampAddChatMessage("[AutoCensure] {F5F5DC} ГЋГЎГ­Г®ГўГ«ГҐГ­ГЁГҐ ГіГ±ГЇГҐГёГ­Г® ГіГ±ГІГ Г­Г®ГўГ«ГҐГ­Г®.", 0xff4500)
 					update_state = false
 					thisScript():reload()
 				end
@@ -154,29 +154,29 @@ function main()
 			sp_active = false
 		end
 		if not sampIsChatInputActive() and not sampIsDialogActive() and not isSampfuncsConsoleActive() and bad_activeO == true and isKeyDown(VK_MENU) and isKeyJustPressed(VK_Y) then
-			sampSendChat("./mute "..idO.." 15 нецензурная лексика.")
+			sampSendChat("./mute "..idO.." 15 Г­ГҐГ¶ГҐГ­Г§ГіГ°Г­Г Гї Г«ГҐГЄГ±ГЁГЄГ .")
 			bad_activeO = false
 		end
 		if not sampIsChatInputActive() and not sampIsDialogActive() and not isSampfuncsConsoleActive() and bad_activeO == true and isKeyDown(VK_MENU) and isKeyJustPressed(VK_N) then
-			sampAddChatMessage("[AutoCensure]{F5F5DC} Действие отменено.", 0x9000ff)
+			sampAddChatMessage("[AutoCensure]{F5F5DC} Г„ГҐГ©Г±ГІГўГЁГҐ Г®ГІГ¬ГҐГ­ГҐГ­Г®.", 0x9000ff)
 			bad_activeO = false
 		end
 
 		if not sampIsChatInputActive() and not sampIsDialogActive() and not isSampfuncsConsoleActive() and bad_activeR == true and isKeyDown(VK_MENU) and isKeyJustPressed(VK_Y) then
-			sampSendChat("./mute "..idR.." 15 нецензурная лексика.")
+			sampSendChat("./mute "..idR.." 15 Г­ГҐГ¶ГҐГ­Г§ГіГ°Г­Г Гї Г«ГҐГЄГ±ГЁГЄГ .")
 			bad_activeR = false
 		end
 		if not sampIsChatInputActive() and not sampIsDialogActive() and not isSampfuncsConsoleActive() and bad_activeR == true and isKeyDown(VK_MENU) and isKeyJustPressed(VK_N) then
-			sampAddChatMessage("[AutoCensure]{F5F5DC} Действие отменено.", 0x9000ff)
+			sampAddChatMessage("[AutoCensure]{F5F5DC} Г„ГҐГ©Г±ГІГўГЁГҐ Г®ГІГ¬ГҐГ­ГҐГ­Г®.", 0x9000ff)
 			bad_activeR = false
 		end
 
 		if not sampIsChatInputActive() and not sampIsDialogActive() and not isSampfuncsConsoleActive() and bad_activeF == true and isKeyDown(VK_MENU) and isKeyJustPressed(VK_Y) then
-			sampSendChat("./mute "..idF.." 15 нецензурная лексика.")
+			sampSendChat("./mute "..idF.." 15 Г­ГҐГ¶ГҐГ­Г§ГіГ°Г­Г Гї Г«ГҐГЄГ±ГЁГЄГ .")
 			bad_activeF = false
 		end
 		if not sampIsChatInputActive() and not sampIsDialogActive() and not isSampfuncsConsoleActive() and bad_activeF == true and isKeyDown(VK_MENU) and isKeyJustPressed(VK_N) then
-			sampAddChatMessage("[AutoCensure]{F5F5DC} Действие отменено.", 0x9000ff)
+			sampAddChatMessage("[AutoCensure]{F5F5DC} Г„ГҐГ©Г±ГІГўГЁГҐ Г®ГІГ¬ГҐГ­ГҐГ­Г®.", 0x9000ff)
 			bad_activeF = false
 		end
 
@@ -189,36 +189,37 @@ function imgui.OnDrawFrame()
 	imgui.SetNextWindowSize(imgui.ImVec2(400, 274), imgui.Cond.FirstUseEver)
 	local btn_size = imgui.ImVec2(385, 24)
 	if interactive.v then
-		imgui.Begin(u8"Взаимодействие с "..nickSP, interactive)
-			if imgui.Button(u8"Забанить", btn_size) then
+		imgui.Begin(u8"Г‚Г§Г ГЁГ¬Г®Г¤ГҐГ©Г±ГІГўГЁГҐ Г± "..nickSP, interactive)
+			if imgui.Button(u8"Г‡Г ГЎГ Г­ГЁГІГј", btn_size) then
 				ban.v = not ban.v
 			end
-			if imgui.Button(u8"Посадить в тюрьму", btn_size) then
+			if imgui.Button(u8"ГЏГ®Г±Г Г¤ГЁГІГј Гў ГІГѕГ°ГјГ¬Гі", btn_size) then
 				jail.v = not jail.v
 			end
-			if imgui.Button(u8"Выдать мут", btn_size) then
+			if imgui.Button(u8"Г‚Г»Г¤Г ГІГј Г¬ГіГІ", btn_size) then
 				mute.v = not mute.v
 			end
-			if imgui.Button(u8"Кикнуть", btn_size) then
+			if imgui.Button(u8"ГЉГЁГЄГ­ГіГІГј", btn_size) then
 				kick.v = not kick.v
 			end
-			if imgui.Button(u8"Заварнить", btn_size) then
+			if imgui.Button(u8"Г‡Г ГўГ Г°Г­ГЁГІГј", btn_size) then
 				warn.v = not warn.v
 			end
-			if imgui.Button(u8"Тихо кикнуть", btn_size) then
+			if imgui.Button(u8"Г’ГЁГµГ® ГЄГЁГЄГ­ГіГІГј", btn_size) then
 				sampSendChat("./skick "..sid)
 			end
-			if imgui.Button(u8"Слапнуть", btn_size) then
+			if imgui.Button(u8"Г‘Г«Г ГЇГ­ГіГІГј", btn_size) then
 				sampSendMenuSelectRow(2)
 				---sampSendMenuSelectRow(0)
 			end 
-			if imgui.Button(u8"Телепортироваться", btn_size) then
+			if imgui.Button(u8"Г’ГҐГ«ГҐГЇГ®Г°ГІГЁГ°Г®ГўГ ГІГјГ±Гї", btn_size) then
 				lua_thread.create(function()
 					sampSendMenuSelectRow(0)
+					wait(100)
 					sampSendChat("/goto "..sid)
 				end)
 			end
-			if imgui.Button(u8"Телепортировать к себе", btn_size) then
+			if imgui.Button(u8"Г’ГҐГ«ГҐГЇГ®Г°ГІГЁГ°Г®ГўГ ГІГј ГЄ Г±ГҐГЎГҐ", btn_size) then
 				lua_thread.create(function()
 					sampSendMenuSelectRow(0)
 					wait(100)
@@ -229,137 +230,137 @@ function imgui.OnDrawFrame()
 	end
 	if ban.v then
 		imgui.SetNextWindowPos(imgui.ImVec2((x / 1.5), y / 2.95), imgui.Cond.FirstUseEver, imgui.ImVec2(0.5, 0.5))
-		imgui.Begin(u8"Забанить", ban)
-			if imgui.Button(u8"Чит", btn_size) then
-				sampSendChat("./ban "..sid.." 10 Чит")
+		imgui.Begin(u8"Г‡Г ГЎГ Г­ГЁГІГј", ban)
+			if imgui.Button(u8"Г—ГЁГІ", btn_size) then
+				sampSendChat("./ban "..sid.." 10 Г—ГЁГІ")
 				ban.v = not ban.v
 			end
-			if imgui.Button(u8"Бот", btn_size) then
-				sampSendChat("./ban "..sid.." 7 Бот")
+			if imgui.Button(u8"ГЃГ®ГІ", btn_size) then
+				sampSendChat("./ban "..sid.." 7 ГЃГ®ГІ")
 				ban.v = not ban.v
 			end
-			if imgui.Button(u8"Аим", btn_size) then
-				sampSendChat("./ban "..sid.." 15 Аим")
+			if imgui.Button(u8"ГЂГЁГ¬", btn_size) then
+				sampSendChat("./ban "..sid.." 15 ГЂГЁГ¬")
 				ban.v = not ban.v
 			end
-			if imgui.Button(u8"ГМ", btn_size) then
-				sampSendChat("./ban "..sid.." 15 ГМ")
+			if imgui.Button(u8"ГѓГЊ", btn_size) then
+				sampSendChat("./ban "..sid.." 15 ГѓГЊ")
 				ban.v = not ban.v
 			end
-			if imgui.Button(u8"ВХ", btn_size) then
-				sampSendChat("./ban "..sid.." 15 ВХ")
+			if imgui.Button(u8"Г‚Г•", btn_size) then
+				sampSendChat("./ban "..sid.." 15 Г‚Г•")
 				ban.v = not ban.v
 			end
-			if imgui.Button(u8"Оскорбление родни", btn_size) then
-				sampSendChat("./ban "..sid.." 15 Оск. род.")
+			if imgui.Button(u8"ГЋГ±ГЄГ®Г°ГЎГ«ГҐГ­ГЁГҐ Г°Г®Г¤Г­ГЁ", btn_size) then
+				sampSendChat("./ban "..sid.." 15 ГЋГ±ГЄ. Г°Г®Г¤.")
 				ban.v = not ban.v
 			end
 		imgui.End()
 	end
 	if jail.v then
 		imgui.SetNextWindowPos(imgui.ImVec2((x / 1.5), y / 2.95), imgui.Cond.FirstUseEver, imgui.ImVec2(0.5, 0.5))
-		imgui.Begin(u8"Посадить в тюрьму", jail)
-			if imgui.Button(u8"ДМ", btn_size) then
-				sampSendChat("./jail "..sid.." 30 Дм")
+		imgui.Begin(u8"ГЏГ®Г±Г Г¤ГЁГІГј Гў ГІГѕГ°ГјГ¬Гі", jail)
+			if imgui.Button(u8"Г„ГЊ", btn_size) then
+				sampSendChat("./jail "..sid.." 30 Г„Г¬")
 				jail.v = not jail.v
 			end
-			if imgui.Button(u8"ДМ в ЗЗ", btn_size) then
-				sampSendChat("./jail "..sid.." 40 Дм в зз")
+			if imgui.Button(u8"Г„ГЊ Гў Г‡Г‡", btn_size) then
+				sampSendChat("./jail "..sid.." 40 Г„Г¬ Гў Г§Г§")
 				jail.v = not jail.v
 			end
-			if imgui.Button(u8"Сбив переката", btn_size) then
-				sampSendChat("./jail "..sid.." 40 Сбив переката")
+			if imgui.Button(u8"Г‘ГЎГЁГў ГЇГҐГ°ГҐГЄГ ГІГ ", btn_size) then
+				sampSendChat("./jail "..sid.." 40 Г‘ГЎГЁГў ГЇГҐГ°ГҐГЄГ ГІГ ")
 				jail.v = not jail.v
 			end
-			if imgui.Button(u8"Сбив", btn_size) then
-				sampSendChat("./jail "..sid.." 40 Сбив")
+			if imgui.Button(u8"Г‘ГЎГЁГў", btn_size) then
+				sampSendChat("./jail "..sid.." 40 Г‘ГЎГЁГў")
 				jail.v = not jail.v
 			end
 		imgui.End()
 	end
 	if mute.v then
 		imgui.SetNextWindowPos(imgui.ImVec2((x / 1.5), y / 2.95), imgui.Cond.FirstUseEver, imgui.ImVec2(0.5, 0.5))
-		imgui.Begin(u8"Выдать мут", mute)
-			if imgui.Button(u8"Нецензурная лексика", btn_size) then
-				sampSendChat("./mute "..sid.." 15 Нецензурная лексика")
+		imgui.Begin(u8"Г‚Г»Г¤Г ГІГј Г¬ГіГІ", mute)
+			if imgui.Button(u8"ГЌГҐГ¶ГҐГ­Г§ГіГ°Г­Г Гї Г«ГҐГЄГ±ГЁГЄГ ", btn_size) then
+				sampSendChat("./mute "..sid.." 15 ГЌГҐГ¶ГҐГ­Г§ГіГ°Г­Г Гї Г«ГҐГЄГ±ГЁГЄГ ")
 				mute.v = not mute.v
 			end
-			if imgui.Button(u8"Оскорбления", btn_size) then
-				sampSendChat("./mute "..sid.." 20 Оск")
+			if imgui.Button(u8"ГЋГ±ГЄГ®Г°ГЎГ«ГҐГ­ГЁГї", btn_size) then
+				sampSendChat("./mute "..sid.." 20 ГЋГ±ГЄ")
 				mute.v = not mute.v
 			end
-			if imgui.Button(u8"Неадекватность", btn_size) then
-				sampSendChat("./mute "..sid.." 30 Неадекват")
+			if imgui.Button(u8"ГЌГҐГ Г¤ГҐГЄГўГ ГІГ­Г®Г±ГІГј", btn_size) then
+				sampSendChat("./mute "..sid.." 30 ГЌГҐГ Г¤ГҐГЄГўГ ГІ")
 				mute.v = not mute.v
 			end
-			if imgui.Button(u8"Капс", btn_size) then
-				sampSendChat("./mute "..sid.." 10 Капс")
+			if imgui.Button(u8"ГЉГ ГЇГ±", btn_size) then
+				sampSendChat("./mute "..sid.." 10 ГЉГ ГЇГ±")
 				mute.v = not mute.v
 			end
-			if imgui.Button(u8"Флуд", btn_size) then
-				sampSendChat("./mute "..sid.." 10 Флуд")
+			if imgui.Button(u8"Г”Г«ГіГ¤", btn_size) then
+				sampSendChat("./mute "..sid.." 10 Г”Г«ГіГ¤")
 				mute.v = not mute.v
 			end
-			if imgui.Button(u8"Упоминание родни", btn_size) then
-				sampSendChat("./mute "..sid.." 300 Упом. род.")
+			if imgui.Button(u8"Г“ГЇГ®Г¬ГЁГ­Г Г­ГЁГҐ Г°Г®Г¤Г­ГЁ", btn_size) then
+				sampSendChat("./mute "..sid.." 300 Г“ГЇГ®Г¬. Г°Г®Г¤.")
 				mute.v = not mute.v
 			end
 		imgui.End()
 	end
 	if kick.v then
 		imgui.SetNextWindowPos(imgui.ImVec2((x / 1.5), y / 2.95), imgui.Cond.FirstUseEver, imgui.ImVec2(0.5, 0.5))
-		imgui.Begin(u8"Кикнуть", kick)
-			if imgui.Button(u8"ДМ", btn_size) then
-				sampSendChat("./kick "..sid.." Дм")
+		imgui.Begin(u8"ГЉГЁГЄГ­ГіГІГј", kick)
+			if imgui.Button(u8"Г„ГЊ", btn_size) then
+				sampSendChat("./kick "..sid.." Г„Г¬")
 				kick.v = not kick.v
 			end
-			if imgui.Button(u8"ДМ кар", btn_size) then
-				sampSendChat("./kick "..sid.." Дм кар")
+			if imgui.Button(u8"Г„ГЊ ГЄГ Г°", btn_size) then
+				sampSendChat("./kick "..sid.." Г„Г¬ ГЄГ Г°")
 				kick.v = not kick.v
 			end
-			if imgui.Button(u8"Помеха", btn_size) then
-				sampSendChat("./kick "..sid.." Помеха")
+			if imgui.Button(u8"ГЏГ®Г¬ГҐГµГ ", btn_size) then
+				sampSendChat("./kick "..sid.." ГЏГ®Г¬ГҐГµГ ")
 				kick.v = not kick.v
 			end
-			if imgui.Button(u8"НонРП", btn_size) then
-				sampSendChat("./kick "..sid.." НонРП")
+			if imgui.Button(u8"ГЌГ®Г­ГђГЏ", btn_size) then
+				sampSendChat("./kick "..sid.." ГЌГ®Г­ГђГЏ")
 				kick.v = not kick.v
 			end
-			if imgui.Button(u8"Багоюз", btn_size) then
-				sampSendChat("./kick "..sid.." Багоюз")
+			if imgui.Button(u8"ГЃГ ГЈГ®ГѕГ§", btn_size) then
+				sampSendChat("./kick "..sid.." ГЃГ ГЈГ®ГѕГ§")
 				kick.v = not kick.v
 			end
 		imgui.End()
 	end
 	if warn.v then
 		imgui.SetNextWindowPos(imgui.ImVec2((x / 1.5), y / 2.95), imgui.Cond.FirstUseEver, imgui.ImVec2(0.5, 0.5))
-		imgui.Begin(u8"Заварнить", warn)
-		if imgui.Button(u8"ДМ", btn_size) then
-			sampSendChat("./warn "..sid.." Дм")
+		imgui.Begin(u8"Г‡Г ГўГ Г°Г­ГЁГІГј", warn)
+		if imgui.Button(u8"Г„ГЊ", btn_size) then
+			sampSendChat("./warn "..sid.." Г„Г¬")
 			warn.v = not warn.v
 		end
-		if imgui.Button(u8"Сбив", btn_size) then
-			sampSendChat("./warn "..sid.." Сбив")
+		if imgui.Button(u8"Г‘ГЎГЁГў", btn_size) then
+			sampSendChat("./warn "..sid.." Г‘ГЎГЁГў")
 			warn.v = not warn.v
 		end
-		if imgui.Button(u8"Сбив переката", btn_size) then
-			sampSendChat("./warn "..sid.." Сбив переката")
+		if imgui.Button(u8"Г‘ГЎГЁГў ГЇГҐГ°ГҐГЄГ ГІГ ", btn_size) then
+			sampSendChat("./warn "..sid.." Г‘ГЎГЁГў ГЇГҐГ°ГҐГЄГ ГІГ ")
 			warn.v = not warn.v
 		end
-		if imgui.Button(u8"Сбив аптеки", btn_size) then
-			sampSendChat("./warn "..sid.." Сбив аптеки")
+		if imgui.Button(u8"Г‘ГЎГЁГў Г ГЇГІГҐГЄГЁ", btn_size) then
+			sampSendChat("./warn "..sid.." Г‘ГЎГЁГў Г ГЇГІГҐГЄГЁ")
 			warn.v = not warn.v
 		end
-		if imgui.Button(u8"+С", btn_size) then
-			sampSendChat("./warn "..sid.." +С")
+		if imgui.Button(u8"+Г‘", btn_size) then
+			sampSendChat("./warn "..sid.." +Г‘")
 			warn.v = not warn.v
 		end
-		if imgui.Button(u8"Отвод", btn_size) then
-			sampSendChat("./warn "..sid.." Отвод")
+		if imgui.Button(u8"ГЋГІГўГ®Г¤", btn_size) then
+			sampSendChat("./warn "..sid.." ГЋГІГўГ®Г¤")
 			warn.v = not warn.v
 		end
-		if imgui.Button(u8"Багоюз", btn_size) then
-			sampSendChat("./warn "..sid.." Багоюз")
+		if imgui.Button(u8"ГЃГ ГЈГ®ГѕГ§", btn_size) then
+			sampSendChat("./warn "..sid.." ГЃГ ГЈГ®ГѕГ§")
 			warn.v = not warn.v
 		end
 		imgui.End()
@@ -383,8 +384,8 @@ function sampev.onServerMessage(color, text)
 				msgO = s
 				lua_thread.create(function()
 					wait(100)
-					sampAddChatMessage("[AutoCensure]{F5F5DC} {00ffd9} "..nickO.." ["..idO.."] {F5F5DC}использовал запрещенное слово:{00ffd9} "..msgO.."!", 0x9000ff)
-					sampAddChatMessage("[AutoCensure]{F5F5DC} Чтобы выдать мут нажмите {008f02}Alt{F5F5DC}+{008f02}Y{F5F5DC}, для отмены {ab0000}Alt{F5F5DC}+{ab0000}N", 0x9000ff)
+					sampAddChatMessage("[AutoCensure]{F5F5DC} {00ffd9} "..nickO.." ["..idO.."] {F5F5DC}ГЁГ±ГЇГ®Г«ГјГ§Г®ГўГ Г« Г§Г ГЇГ°ГҐГ№ГҐГ­Г­Г®ГҐ Г±Г«Г®ГўГ®:{00ffd9} "..msgO.."!", 0x9000ff)
+					sampAddChatMessage("[AutoCensure]{F5F5DC} Г—ГІГ®ГЎГ» ГўГ»Г¤Г ГІГј Г¬ГіГІ Г­Г Г¦Г¬ГЁГІГҐ {008f02}Alt{F5F5DC}+{008f02}Y{F5F5DC}, Г¤Г«Гї Г®ГІГ¬ГҐГ­Г» {ab0000}Alt{F5F5DC}+{ab0000}N", 0x9000ff)
 					bad_activeO = true
 				end)
 				break
@@ -400,8 +401,8 @@ function sampev.onServerMessage(color, text)
 				msgR = w
 				lua_thread.create(function()
 					wait(100)
-					sampAddChatMessage("[AutoCensure]{F5F5DC} {00ffd9} "..nickR.." ["..idR.."] {F5F5DC}использовал запрещенное слово:{00ffd9} "..msgR.."!", 0x9000ff)
-					sampAddChatMessage("[AutoCensure]{F5F5DC} Чтобы выдать мут нажмите {008f02}Alt{F5F5DC}+{008f02}Y{F5F5DC}, для отмены {ab0000}Alt{F5F5DC}+{ab0000}N", 0x9000ff)
+					sampAddChatMessage("[AutoCensure]{F5F5DC} {00ffd9} "..nickR.." ["..idR.."] {F5F5DC}ГЁГ±ГЇГ®Г«ГјГ§Г®ГўГ Г« Г§Г ГЇГ°ГҐГ№ГҐГ­Г­Г®ГҐ Г±Г«Г®ГўГ®:{00ffd9} "..msgR.."!", 0x9000ff)
+					sampAddChatMessage("[AutoCensure]{F5F5DC} Г—ГІГ®ГЎГ» ГўГ»Г¤Г ГІГј Г¬ГіГІ Г­Г Г¦Г¬ГЁГІГҐ {008f02}Alt{F5F5DC}+{008f02}Y{F5F5DC}, Г¤Г«Гї Г®ГІГ¬ГҐГ­Г» {ab0000}Alt{F5F5DC}+{ab0000}N", 0x9000ff)
 					bad_activeR = true
 				end)
 				break
@@ -417,8 +418,8 @@ function sampev.onServerMessage(color, text)
 				msgF = m
 				lua_thread.create(function()
 					wait(100)
-					sampAddChatMessage("[AutoCensure]{F5F5DC} {00ffd9} "..nickF.." ["..idF.."] {F5F5DC}использовал запрещенное слово:{00ffd9} "..msgF.."!", 0x9000ff)
-					sampAddChatMessage("[AutoCensure]{F5F5DC} Чтобы выдать мут нажмите {008f02}Alt{F5F5DC}+{008f02}Y{F5F5DC}, для отмены {ab0000}Alt{F5F5DC}+{ab0000}N", 0x9000ff)
+					sampAddChatMessage("[AutoCensure]{F5F5DC} {00ffd9} "..nickF.." ["..idF.."] {F5F5DC}ГЁГ±ГЇГ®Г«ГјГ§Г®ГўГ Г« Г§Г ГЇГ°ГҐГ№ГҐГ­Г­Г®ГҐ Г±Г«Г®ГўГ®:{00ffd9} "..msgF.."!", 0x9000ff)
+					sampAddChatMessage("[AutoCensure]{F5F5DC} Г—ГІГ®ГЎГ» ГўГ»Г¤Г ГІГј Г¬ГіГІ Г­Г Г¦Г¬ГЁГІГҐ {008f02}Alt{F5F5DC}+{008f02}Y{F5F5DC}, Г¤Г«Гї Г®ГІГ¬ГҐГ­Г» {ab0000}Alt{F5F5DC}+{ab0000}N", 0x9000ff)
 					bad_activeF = true
 				end)
 				break
@@ -427,7 +428,7 @@ function sampev.onServerMessage(color, text)
 	end
 end
 
-function onScriptTerminate(script, quitGame) -- отключение скрипта
+function onScriptTerminate(script, quitGame) -- Г®ГІГЄГ«ГѕГ·ГҐГ­ГЁГҐ Г±ГЄГ°ГЁГЇГІГ 
     showCursor(false)
     lockPlayerControl(false)
 end
